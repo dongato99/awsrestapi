@@ -1,11 +1,13 @@
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from routes.alumno import alumno
 from fastapi.responses import RedirectResponse
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 app = FastAPI()
+app.include_router(alumno)
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request, exc):
@@ -30,11 +32,12 @@ class Maestro(BaseModel):
     apellidos: str
     horasClase: int
 
-@app.get('/')
+
+"""@app.get('/')
 def read_root():
-    return RedirectResponse(url='/docs')
+    return RedirectResponse(url='/docs')"""
 
-
+"""
 @app.get('/alumnos')
 def get_alumnos():
     return alumnos
@@ -115,5 +118,5 @@ def editar_maestro(id:int, actualizadomaestro:Maestro):
     raise HTTPException(status_code=404,detail = "Not Found")
 
 
-
+"""
 
