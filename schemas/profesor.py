@@ -1,10 +1,9 @@
 from typing import Optional
 from pydantic import BaseModel
 
-class Alumno(BaseModel):
+class Profesor(BaseModel):
     id: Optional[str]
+    numeroEmpleado: int
     nombres: str
     apellidos: str
-    matricula: str
-    promedio: float
-    fotoPerfilUrl: Optional[str]
+    horasClase: int
